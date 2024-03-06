@@ -5,17 +5,30 @@
  */
 package br.com.projeto_1.view;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import br.com.projeto_1.dto.ClienteDTO;
+import br.com.projeto_1.ctr.ClienteCTR;
 /**
  *
  * @author Aluno
  */
 public class ClienteVIEW extends javax.swing.JInternalFrame {
+    
+    ClienteDTO clienteDTO = new ClienteDTO();
+    ClienteCTR clienteCTR = new ClienteCTR();
+    
+    int gravar_alterar; // variavel para saber se esta alterando ou incluindo.//
 
     /**
      * Creates new form ClienteVIEW
      */
     public ClienteVIEW() {
         initComponents();
+        
+        liberaCampos(false);
+        
+        liberaBotoes(true, false, false, false, true);
     }
     
     public void setPosicao(){
@@ -39,24 +52,24 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         logradouro_cli = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        numero_cli = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         bairro_cli = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        cidade_cli = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         estado_cli = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cep_cli = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        cpf_cli = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        rg_cli = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Cliente");
@@ -82,31 +95,41 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel6.setText("Cidade:");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        cidade_cli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                cidade_cliActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel7.setText("Estado:");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton1.setText("Novo");
+        btnNovo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton2.setText("Salvar");
+        btnSalvar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
-        estado_cli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " AC", " AL", " AP", " AM", " BA", " CE", " DF", " ES", " GO", " MA", " MT", " MS", " MG", " PA", " PB", " PR", " PE", " PI", " RJ", " RN", " RS", " RO", " RR", " SC", " SP", " SE", " TO" }));
+        estado_cli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
-        jButton3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton3.setText("Cancelar");
+        btnCancelar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnCancelar.setText("Cancelar");
 
-        jButton4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton4.setText("Excluir");
+        btnExcluir.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnExcluir.setText("Excluir");
 
-        jButton5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton5.setText("Sair");
+        btnSair.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnSair.setText("Sair");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel8.setText("CEP:");
@@ -139,26 +162,26 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(numero_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
                                 .addGap(2, 2, 2)
                                 .addComponent(estado_cli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addComponent(jButton1)
+                                .addComponent(btnNovo)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(btnSalvar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3)
+                                .addComponent(btnCancelar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton4)
+                                .addComponent(btnExcluir)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton5))
+                                .addComponent(btnSair))
                             .addComponent(logradouro_cli)
                             .addComponent(nome_cli)
                             .addGroup(layout.createSequentialGroup()
@@ -166,15 +189,15 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                                 .addComponent(bairro_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cep_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addGap(2, 2, 2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cpf_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4)))
+                        .addComponent(rg_cli)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -199,32 +222,32 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numero_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(bairro_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cidade_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(estado_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cep_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cpf_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rg_cli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 67, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(222, 222, 222)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton5)
-                            .addComponent(jButton1))))
+                            .addComponent(btnSalvar)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnExcluir)
+                            .addComponent(btnSair)
+                            .addComponent(btnNovo))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -235,19 +258,93 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nome_cliActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void cidade_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidade_cliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_cidade_cliActionPerformed
 
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+      liberaCampos(true);
+        liberaBotoes(false, true , true, false, true);
+        gravar_alterar =1;
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+     
+        if(gravar_alterar == 1){
+            gravar();
+            gravar_alterar =0;
+        }
+        
+        limpaCampos();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void liberaCampos(boolean a){
+        nome_cli.setEnabled(a);
+        logradouro_cli.setEnabled(a);
+        numero_cli.setEnabled(a);
+        bairro_cli.setEnabled(a);
+        cidade_cli.setEnabled(a);
+        cep_cli.setEnabled(a);
+        estado_cli.setEnabled(a);
+        rg_cli.setEnabled(a);
+        cpf_cli.setEnabled(a);
+    }
+    
+    private void limpaCampos(){
+        
+        nome_cli.setText("");
+        logradouro_cli.setText("");
+        numero_cli.setText("");
+        bairro_cli.setText("");
+        cidade_cli.setText("");
+        cep_cli.setText("");
+        rg_cli.setText("");
+        cpf_cli.setText("");  
+    }
+    
+    private void liberaBotoes(boolean a, boolean b, boolean c, boolean d, boolean e){
+        
+        btnNovo.setEnabled(a);
+        btnSalvar.setEnabled(b);
+        btnSair.setEnabled(c);
+        btnExcluir.setEnabled(d);
+        btnCancelar.setEnabled(e);
+    }
+    
+    private void gravar(){
+        
+       try{
+           clienteDTO.setNome_cli(nome_cli.getText());
+           clienteDTO.setLogradouro_cli(logradouro_cli.getText());
+           clienteDTO.setNumero_cli(Integer.parseInt(numero_cli.getText()));
+           clienteDTO.setBairro_cli(bairro_cli.getText());
+           clienteDTO.setCidade_cli(cidade_cli.getText());
+           clienteDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
+           clienteDTO.setCep_cli(cep_cli.getText());
+           clienteDTO.setCpf_cli(cpf_cli.getText());
+           clienteDTO.setRg_cli(rg_cli.getText());
+           
+           JOptionPane.showMessageDialog(null, clienteCTR.inserirCliente(clienteDTO));
+           
+       }catch(Exception e){
+           System.out.println("Erro ao gravar " + e.getMessage());
+       }
+       
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro_cli;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JTextField cep_cli;
+    private javax.swing.JTextField cidade_cli;
+    private javax.swing.JTextField cpf_cli;
     private javax.swing.JComboBox<String> estado_cli;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -258,12 +355,9 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField logradouro_cli;
     private javax.swing.JTextField nome_cli;
+    private javax.swing.JTextField numero_cli;
+    private javax.swing.JTextField rg_cli;
     // End of variables declaration//GEN-END:variables
 }

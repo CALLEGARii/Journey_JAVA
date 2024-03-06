@@ -4,7 +4,7 @@ public class ClienteDTO {
     
     private String nome_cli, logradouro_cli, bairro_cli, cidade_cli;
     private String estado_cli, cep_cli, cpf_cli, rg_cli;
-    private String id_cli, numero_cli;
+    private int id_cli, numero_cli;
 
     public String getNome_cli() {
         return nome_cli;
@@ -70,19 +70,20 @@ public class ClienteDTO {
         this.rg_cli = rg_cli;
     }
 
-    public String getId_cli() {
+    public int getId_cli() {
         return id_cli;
     }
 
-    public void setId_cli(String id_cli) {
+    public void setId_cli(int id_cli) {
         this.id_cli = id_cli;
     }
 
-    public String getNumero_cli() {
+    public int getNumero_cli() {
         return numero_cli;
     }
 
-    public void setNumero_cli(String numero_cli) {
+    public void setNumero_cli(int numero_cli) {
         this.numero_cli = numero_cli;
-    }   
+    }
+  
 }

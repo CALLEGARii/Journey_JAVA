@@ -7,8 +7,7 @@ public class ConexaoDAO {
     
     public static Connection con = null;
     
-    public ConexaoDAO(){
-        
+    public ConexaoDAO(){   
         
     }
     
@@ -22,20 +21,21 @@ public class ConexaoDAO {
             
             DriverManager.registerDriver(new org.postgresql.Driver());
             
-            String url = "jdbc:postgresql://localhost:5432/" + dsn;
+            String url = "jdbc:postgresql://localhost:5433/" + dsn;
             
+            con = DriverManager.getConnection(url, user, senha);
             con.setAutoCommit(false);
+            
             if(con == null){
                 System.out.println("Erro ao abrir o banco! ");
             }
             
-            con = DriverManager.getConnection(url, user, senha);
+            
         }catch(Exception e){
             System.out.println("Problema ao abrir a base de dados" +
             e.getMessage());
         }
-    
-    
+  
     }
     
     public static void CloseDB(){
