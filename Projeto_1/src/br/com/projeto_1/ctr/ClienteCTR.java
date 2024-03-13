@@ -36,4 +36,31 @@ public class ClienteCTR {
     public void CloseDB(){
         ConexaoDAO.CloseDB();
     }
+    
+    public String alterarCliente(ClienteDTO clienteDTO){
+         try{  
+        if(clienteDAO.alterarCliente(clienteDTO)){   
+            return "Cliente Alterado com Sucesso!!! ";
+        }else{
+            return " NÃO foi possivel Alterar!!! ";
+          }
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+             return "Cliente NÃO Alterado! ";
+         }  
+       }
+    
+     public String excluirCliente(ClienteDTO clienteDTO){
+         try{  
+        if(clienteDAO.excluirCliente(clienteDTO)){   
+            return "Cliente Excluído com Sucesso!!! ";
+        }else{
+            return "NÃO foi possivel excluir!!! ";
+          }
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+             return "NÃO foi Possivel excluir! ";
+         }  
+       }
+    
 }//Fecha Classe//

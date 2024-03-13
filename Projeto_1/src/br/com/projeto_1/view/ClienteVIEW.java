@@ -345,6 +345,15 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
             gravar();
             gravar_alterar =0;
         }
+        else{
+            if(gravar_alterar == 2){
+                alterar();
+                gravar_alterar = 0;
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Erro no Sistema!!! ");
+            }
+        }
         
         limpaCampos();
         liberaCampos(false);
@@ -467,9 +476,29 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         }
     }
     
-    
+    private void alterar(){
+        
+       try{
+           clienteDTO.setNome_cli(nome_cli.getText());
+           clienteDTO.setLogradouro_cli(logradouro_cli.getText());
+           clienteDTO.setNumero_cli(Integer.parseInt(numero_cli.getText()));
+           clienteDTO.setBairro_cli(bairro_cli.getText());
+           clienteDTO.setCidade_cli(cidade_cli.getText());
+           clienteDTO.setEstado_cli(estado_cli.getSelectedItem().toString());
+           clienteDTO.setCep_cli(cep_cli.getText());
+           clienteDTO.setCpf_cli(cpf_cli.getText());
+           clienteDTO.setRg_cli(rg_cli.getText());
            
+           JOptionPane.showMessageDialog(null, clienteCTR.alterarCliente(clienteDTO));
+           
+       }catch(Exception e){
+           System.out.println("Erro ao Alterar " + e.getMessage());
+       }
        
+    }
+    
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro_cli;

@@ -91,7 +91,7 @@ public class ClienteDAO{
             String comando = "Update cliente set "
                 + "nome_cli = '" + clienteDTO.getNome_cli() + "', "
                 + "logradouro_cli = '" + clienteDTO.getLogradouro_cli() + "', "
-                + "numero_cli = '" + clienteDTO.getNumero_cli() + ", "
+                + "numero_cli = " + clienteDTO.getNumero_cli() + ", "
                 + "bairro_cli = '" + clienteDTO.getBairro_cli() + "', "
                 + "cidade_cli = '" + clienteDTO.getCidade_cli() + "', "
                 + "estado_cli = '" + clienteDTO.getEstado_cli() + "', "
@@ -111,5 +111,28 @@ public class ClienteDAO{
             ConexaoDAO.CloseDB();
         }       
     }
+     
+     public boolean excluirCliente(ClienteDTO clienteDTO){
+        
+        try{
+            
+            ConexaoDAO.ConnectDB();
+            
+            stmt = ConexaoDAO.con.createStatement();
+            
+            String comando = "Delete from cliente where id_cli =  "
+                + clienteDTO.getId_cli();
+
+            stmt.execute(comando.toUpperCase());
+            ConexaoDAO.con.commit();
+              return true;
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }finally{
+            ConexaoDAO.CloseDB();
+        }
+     }
     
 } // Fecha a Classe//
