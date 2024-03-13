@@ -7,7 +7,7 @@
         <Menu class="javax.swing.JMenu" name="menuCadastro">
           <Properties>
             <Property name="mnemonic" type="int" value="102"/>
-            <Property name="text" type="java.lang.String" value="Cadastro:"/>
+            <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroActionPerformed"/>
@@ -27,7 +27,7 @@
         <Menu class="javax.swing.JMenu" name="menuSair">
           <Properties>
             <Property name="mnemonic" type="int" value="101"/>
-            <Property name="text" type="java.lang.String" value="Sair:"/>
+            <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuSairMouseClicked"/>
@@ -59,7 +59,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="desktopPane" pref="907" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="desktopPane" pref="1116" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">

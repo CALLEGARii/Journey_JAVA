@@ -37,7 +37,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         menuCadastro.setMnemonic('f');
-        menuCadastro.setText("Cadastro:");
+        menuCadastro.setText("Cadastrar");
         menuCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCadastroActionPerformed(evt);
@@ -56,7 +56,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         menuBar.add(menuCadastro);
 
         menuSair.setMnemonic('e');
-        menuSair.setText("Sair:");
+        menuSair.setText("Sair");
         menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuSairMouseClicked(evt);
@@ -70,7 +70,9 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

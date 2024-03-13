@@ -56,18 +56,18 @@ public class ClienteDAO{
             switch(opcao){
                 
                 case 1:
-                    comando = "Select c.* " +
-                            "from cliente c " +
-                            "where nome_cli like '" + clienteDTO.getNome_cli() + "%" +
-                            "order by c.nome_cli";
+                    comando = "SELECT c.* " +
+                            "FROM cliente c " +
+                            "WHERE nome_cli like '" + clienteDTO.getNome_cli() + "%' ORDER BY c.nome_cli";
                     break;
                 case 2:
-                    comando = "Select c.* " +
-                            "where c.id_cli = " + clienteDTO.getId_cli();
+                    comando = "SELECT c.* " +
+                            "FROM cliente c " + 
+                            "WHERE c.id_cli = " + clienteDTO.getId_cli();
                     break;
                 case 3:
-                    comando = "Select c.id_cli, c.nome_cli, " +
-                            "from cliente c ";
+                    comando = "SELECT c.id_cli, c.nome_cli, " +
+                            "FROM cliente c ";
                                        
             }
             rs = stmt.executeQuery(comando.toUpperCase());
