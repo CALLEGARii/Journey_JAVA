@@ -5,14 +5,23 @@
  */
 package br.com.avaliacao_1.view;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import br.com.avaliacao_1.dto.FornecedorDTO;
+import br.com.avaliacao_1.ctr.FornecedorCTR;
 
 public class FornecedorVIEW extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FornecedorVIEW
-     */
+    FornecedorDTO fornecedorDTO = new FornecedorDTO();
+    FornecedorCTR fornecedorCTR = new FornecedorCTR();
+    
+    int gravar_alterar;
+    
     public FornecedorVIEW() {
         initComponents();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
     }
     
     public void setPosicao(){
@@ -107,9 +116,19 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
 
         btnNovo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -167,21 +186,20 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
                             .addComponent(logradouro_forn, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nome_forn, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(cidade_forn, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cep_forn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cidade_forn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel8))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cep_forn)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(telefone_forn, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel3)
-                                    .addGap(22, 22, 22)))
+                                    .addComponent(telefone_forn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel3)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(estado_forn, 0, 140, Short.MAX_VALUE)
                                 .addComponent(cnpj_forn))))
@@ -239,11 +257,12 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(bairro_forn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(numero_forn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(bairro_forn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(numero_forn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -280,6 +299,76 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cep_fornActionPerformed
 
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        liberaCampos(true);
+        liberaBotoes(false, true, true, false, true);
+        gravar_alterar = 1;
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if(gravar_alterar == 1){
+            gravar();
+            gravar_alterar = 0;
+        }
+        limpaCampos();
+        liberaCampos(false);
+        liberaBotoes(true, false, false, false, true);
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void liberaCampos(boolean a){
+        nome_forn.setEnabled(a);
+        logradouro_forn.setEnabled(a);
+        numero_forn.setEnabled(a);
+        bairro_forn.setEnabled(a);
+        cidade_forn.setEnabled(a);
+        cep_forn.setEnabled(a);
+        estado_forn.setEnabled(a);        
+        cnpj_forn.setEnabled(a);
+        telefone_forn.setEnabled(a);
+    }
+    
+    private void limpaCampos(){    
+        nome_forn.setText("");
+        logradouro_forn.setText("");
+        numero_forn.setText("");
+        bairro_forn.setText("");
+        cidade_forn.setText("");
+        cep_forn.setText("");
+        cnpj_forn.setText("");
+        telefone_forn.setText("");
+    }
+    
+     private void liberaBotoes(boolean a, boolean b, boolean c, boolean d, boolean e){
+        
+        btnNovo.setEnabled(a);
+        btnSalvar.setEnabled(b);
+        btnSair.setEnabled(c);
+        btnExcluir.setEnabled(d);
+        btnCancelar.setEnabled(e);
+    }
+     
+     private void gravar(){
+        
+       try{
+           fornecedorDTO.setNome_forn(nome_forn.getText());
+           fornecedorDTO.setLogradouro_forn(logradouro_forn.getText());
+           fornecedorDTO.setNumero_forn(Integer.parseInt(numero_forn.getText()));
+           fornecedorDTO.setBairro_forn(bairro_forn.getText());
+           fornecedorDTO.setCidade_forn(cidade_forn.getText());
+           fornecedorDTO.setEstado_forn(estado_forn.getSelectedItem().toString());
+           fornecedorDTO.setCep_forn(cep_forn.getText());
+           fornecedorDTO.setCnpj_forn(cnpj_forn.getText());
+           fornecedorDTO.setTelefone_forn(Integer.parseInt(telefone_forn.getText()));
+           
+           JOptionPane.showMessageDialog(null, fornecedorCTR.inserirFornecedor(fornecedorDTO));
+           
+       }catch(Exception e){
+           System.out.println("Erro ao gravar " + e.getMessage());
+        }   
+    }
+     
+     
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairro_forn;

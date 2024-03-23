@@ -4,10 +4,18 @@ public class FornecedorDTO {
     
     private String nome_forn, logradouro_forn, bairro_forn, cidade_forn;
     private String estado_forn, cep_forn, cnpj_forn;
-    private int id_forn, numero_forn;
+    private int id_forn, numero_forn, telefone_forn;
 
     public String getNome_forn() {
         return nome_forn;
+    }
+
+    public int getTelefone_forn() {
+        return telefone_forn;
+    }
+
+    public void setTelefone_forn(int telefone_forn) {
+        this.telefone_forn = telefone_forn;
     }
 
     public void setNome_forn(String nome_forn) {
