@@ -6,11 +6,7 @@ import java.sql.*;
 public class ConexaoDAO {
     
     public static Connection con = null;
-    
-    public ConexaoDAO(){   
         
-    }
-    
     public static void ConnectDB(){
         
         try{
