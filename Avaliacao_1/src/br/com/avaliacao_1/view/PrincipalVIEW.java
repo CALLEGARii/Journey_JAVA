@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package br.com.avaliacao_1.view;
-
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,13 +20,9 @@ public class PrincipalVIEW extends javax.swing.JFrame {
      */
     public PrincipalVIEW() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        
-        
-        
+        this.setLocationRelativeTo(null);            
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +32,13 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        ImageIcon imageicon = new ImageIcon(getClass().getResource("img/Cadastro.jpg"));
+        Image image = imageicon.getImage();
+        desktopPane = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics graphics){
+                graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         menuBar = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         itemFornecedorMenu = new javax.swing.JMenuItem();
@@ -44,6 +48,10 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desktopPane.setInheritsPopupMenu(true);
+
+        menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/avaliacao_1/view/img/novo.png"))); // NOI18N
         menuCadastro.setMnemonic('f');
         menuCadastro.setText("Cadastro");
 
@@ -65,6 +73,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         menuBar.add(menuCadastro);
 
+        menuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/avaliacao_1/view/img/sair.png"))); // NOI18N
         menuSair.setMnemonic('h');
         menuSair.setText("Sair");
         menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,11 +89,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
 
         pack();

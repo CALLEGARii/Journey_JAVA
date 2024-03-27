@@ -1,0 +1,19 @@
+CÓDIGO SQL 
+
+CREATE TABLE fornecedor
+(
+	id_forn serial,
+	nome_forn character varying(50),
+	logradouro_forn character varying(50),
+	numero_forn integer,
+	bairro_forn character varying(30),
+	cidade_forn character varying(30),
+	estado_forn character varying(2),
+	cep_forn character varying(9),
+	cnpj_forn character varying(14),
+	telefone_forn integer,
+	CONSTRAINT fornecedor_pkey PRIMARY KEY (id_forn),
+	CONSTRAINT fornecedor_pdf_key UNIQUE (cnpj_forn)
+)
+
+SELECT * FROM fornecedor

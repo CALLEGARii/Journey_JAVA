@@ -35,4 +35,41 @@ public class FornecedorCTR {
         rs = this.fornecedorDAO.consultarFornecedor(fornecedorDTO, opcao);
         return rs;
     }
-}
+    
+    public void CloseDB(){
+        ConexaoDAO.CloseDB();
+    }
+    
+    public String alterarFornecedor(FornecedorDTO fornecedorDTO){
+        
+        try{
+            if(fornecedorDAO.alterarFornecedor(fornecedorDTO)){
+                return "Cliente Alterado com Sucesso! ";
+                
+            }else{
+                return "Cliente Não Alterado!! ";
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return "Cliente Não Alterado!! ";
+        }
+   }
+    
+    public String excluirFornecedor(FornecedorDTO fornecedorDTO){
+        
+        try{
+            if(fornecedorDAO.excluirFornecedor(fornecedorDTO)){
+                return "Fornecedor Exluído com Sucesso! ";
+                
+            }else{
+                return "Fornecedor Não Excluído!!! ";
+                
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return "Fornecedor Não Excluído!!! ";
+        }
+    }
+}//Fecha a Classe

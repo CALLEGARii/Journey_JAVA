@@ -6,7 +6,6 @@ public class ConexaoDAO {
     
     public static Connection con = null;
     
-    
     public ConexaoDAO(){
         
     }
@@ -17,7 +16,7 @@ public class ConexaoDAO {
             
             String dsn = "Avaliacao1_Rafael_Callegari";
             String user = "postgres";
-            String senha = "********";
+            String senha = "Callegari@3145";
             
             DriverManager.registerDriver(new org.postgresql.Driver());
             
