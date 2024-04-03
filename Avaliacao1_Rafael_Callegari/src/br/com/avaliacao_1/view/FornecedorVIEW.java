@@ -23,7 +23,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
     public FornecedorVIEW() {
         initComponents();
         liberaCampos(false);
-        liberaBotoes(true, false, true, false, true);
+        liberaBotoes(true, false, true, false, false);
         modelo_jtl_consultar_forn = (DefaultTableModel) jtl_consultar_forn.getModel();
         
     }
@@ -356,7 +356,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         }
         limpaCampos();
         liberaCampos(false);
-        liberaBotoes(true, false, false, false, true);
+        liberaBotoes(true, false, true, false, false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -368,14 +368,14 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         jtl_consultar_forn.getValueAt(
         jtl_consultar_forn.getSelectedRow(), 0))));
         
-        liberaBotoes(false, true, true, true, true);
+        liberaBotoes(false, true, true, false, true);
     }//GEN-LAST:event_jtl_consultar_fornMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         excluir();
         limpaCampos();
         liberaCampos(false);
-        liberaBotoes(true, false, false, false, true);
+        liberaBotoes(true, false, true, false, false);
         modelo_jtl_consultar_forn.setNumRows(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -383,7 +383,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         limpaCampos();
         liberaCampos(false);
         modelo_jtl_consultar_forn.setNumRows(0);
-        liberaBotoes(true, false, false, false, true);
+        liberaBotoes(true, false, true, false, false);
         gravar_alterar = 0;
     }//GEN-LAST:event_btnCancelarActionPerformed
 
