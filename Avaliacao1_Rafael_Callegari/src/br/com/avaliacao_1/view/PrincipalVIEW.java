@@ -42,8 +42,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         itemFornecedorMenu = new javax.swing.JMenuItem();
-        itemProdutosMenu = new javax.swing.JMenuItem();
-        itemVendasMenu = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,13 +61,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
             }
         });
         menuCadastro.add(itemFornecedorMenu);
-
-        itemProdutosMenu.setMnemonic('s');
-        itemProdutosMenu.setText("Produtos");
-        menuCadastro.add(itemProdutosMenu);
-
-        itemVendasMenu.setText("Vendas");
-        menuCadastro.add(itemVendasMenu);
 
         menuBar.add(menuCadastro);
 
@@ -163,8 +154,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem itemFornecedorMenu;
-    private javax.swing.JMenuItem itemProdutosMenu;
-    private javax.swing.JMenuItem itemVendasMenu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuSair;

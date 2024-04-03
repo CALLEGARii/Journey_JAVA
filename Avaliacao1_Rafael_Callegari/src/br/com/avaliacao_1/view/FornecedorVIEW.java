@@ -368,7 +368,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
         jtl_consultar_forn.getValueAt(
         jtl_consultar_forn.getSelectedRow(), 0))));
         
-        liberaBotoes(false, true, true, false, true);
+        liberaBotoes(false, true, true, true, true);
     }//GEN-LAST:event_jtl_consultar_fornMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
