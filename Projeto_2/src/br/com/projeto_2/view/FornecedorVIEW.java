@@ -347,8 +347,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
             fornecedorDTO.setData_cad_for(data_format.parse(data_cad_for.getText()));
             
             JOptionPane.showMessageDialog(null,
-                    fornecedorCTR.inserirFornecedor(fornecedorDTO)
-            );
+                    fornecedorCTR.alterarFornecedor(fornecedorDTO));
         }
         catch(Exception e){
             System.out.println("Erro ao Alterar " + e.getMessage());
@@ -356,7 +355,7 @@ public class FornecedorVIEW extends javax.swing.JInternalFrame {
     }
     
     private void excluir(){
-        if(JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir o Fornecedor ?","Aviso",
+        if(JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir esse Fornecedor ?","Aviso",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, fornecedorCTR.excluirFornecedor(fornecedorDTO));
         }

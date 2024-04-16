@@ -85,7 +85,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
     Object[] options = {"Sair", "Cancelar"};
         
-        if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema", "Informação",
+        if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema ?", "Informação",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == 0 ){
             System.exit(0);
         }
