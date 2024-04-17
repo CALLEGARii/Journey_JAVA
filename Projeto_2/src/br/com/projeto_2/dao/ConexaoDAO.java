@@ -18,11 +18,11 @@ public class ConexaoDAO {
             String dsn = "projeto_2";
             String user = "postgres";
             // String senha = "Callegari@3145";
-            String senha = "postdba";
+            String senha = "POSTDBA";
             
             DriverManager.registerDriver(new org.postgresql.Driver());
             
-            String url = "jdbc:postgresql://localhost:5432/" + dsn;
+            String url = "jdbc:postgresql://localhost:5433/" + dsn;
             
             con = DriverManager.getConnection(url, user, senha);
             con.setAutoCommit(false);
