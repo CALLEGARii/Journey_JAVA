@@ -16,7 +16,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     
     public PrincipalVIEW() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -38,17 +37,11 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/novo.png"))); // NOI18N
         menuCadastro.setMnemonic('f');
         menuCadastro.setText("Cadastro");
 
         itemMenuFornecedor.setMnemonic('o');
         itemMenuFornecedor.setText("Fornecedor");
-        itemMenuFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemMenuFornecedorActionPerformed(evt);
-            }
-        });
         menuCadastro.add(itemMenuFornecedor);
 
         itemMenuProduto.setText("Produto");
@@ -56,7 +49,6 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         menuBar.add(menuCadastro);
 
-        menuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_2/view/imagens/sair.png"))); // NOI18N
         menuSair.setMnemonic('e');
         menuSair.setText("Sair");
         menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,7 +68,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
         );
 
         pack();
@@ -85,24 +77,14 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
     Object[] options = {"Sair", "Cancelar"};
         
-        if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema ?", "Informação",
+        if(JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema", "Informação",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]) == 0 ){
             System.exit(0);
         }
+    
     }//GEN-LAST:event_menuSairMouseClicked
 
-    private void itemMenuFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuFornecedorActionPerformed
-    abreFornecedorVIEW();
-    }//GEN-LAST:event_itemMenuFornecedorActionPerformed
-
-    private void abreFornecedorVIEW(){
-        FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
-        this.desktopPane.add(fornecedorVIEW);
-        fornecedorVIEW.setVisible(true);
-        fornecedorVIEW.setPosicao();
-    }   
     /**
-     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

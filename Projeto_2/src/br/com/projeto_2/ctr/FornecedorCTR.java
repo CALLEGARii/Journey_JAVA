@@ -30,7 +30,7 @@ public class FornecedorCTR {
         
         try{
             if(fornecedorDAO.alterarFornecedor(fornecedorDTO)){
-                return "Fornecedor Alterado com Sucesso!!! ";
+                return "Fornecedor alterado com Sucesso!! ";
             }else{
                 return "Fornecedor Não Alterado!!! ";
             }
@@ -47,7 +47,7 @@ public class FornecedorCTR {
             if(fornecedorDAO.excluirFornecedor(fornecedorDTO)){
                 return "Fornecedor excluído com Sucesso!! ";
             }else{
-                return "Não foi Possível Excluir esse Fornecedor!!! ";
+                return "Não foi Possível Excluir o Fornecedor!!! ";
             }
         }
         catch(Exception e){

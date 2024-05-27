@@ -20,11 +20,11 @@ public class FornecedorDAO {
             stmt = ConexaoDAO.con.createStatement();
             
             String comando = "Insert into fornecedor (nome_for, cnpj_for, "
-                    + "tel_for, data_cad_for) values ( "
+                    + "tel_for, date_cad_for) values ( "
                     + "'" + fornecedorDTO.getNome_for() + "', "
                     + "'" + fornecedorDTO.getCnpj_for() + "', " 
                     + "'" + fornecedorDTO.getTel_for() + "', "
-                    + "to_date('" + data_format.format(fornecedorDTO.getData_cad_for()) + "','dd/mm/yyyy')) ";
+                    + "to_date('" + data_format.format(fornecedorDTO.getData_cad_for()) + "','dd/mm/yyyy'))";
             
             stmt.execute(comando.toUpperCase());
             ConexaoDAO.con.commit();
@@ -50,7 +50,7 @@ public class FornecedorDAO {
                     + "nome_for = '" + fornecedorDTO.getNome_for() + "', "
                     + "cnpj_for = '" + fornecedorDTO.getCnpj_for() + "', "
                     + "tel_for = '" + fornecedorDTO.getTel_for() + "', "
-                    + "data_cad_for = to_date('" + data_format.format(fornecedorDTO.getData_cad_for()) + "','dd/mm/yyyy') "
+                    + "data_cad_for = to_date('" + data_format.format(fornecedorDTO.getData_cad_for()) + "','dd/mm/yyyy')"
                     + "where id_for = " + fornecedorDTO.getId_for();
                  
             stmt.execute(comando.toUpperCase());
