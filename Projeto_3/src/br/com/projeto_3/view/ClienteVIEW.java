@@ -204,7 +204,7 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Nome:");
 
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_1/view/imagens/pesquisar.png"))); // NOI18N
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_3/view/imagens/pesquisar.png"))); // NOI18N
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -441,9 +441,9 @@ public class ClienteVIEW extends javax.swing.JInternalFrame {
         
         btnNovo.setEnabled(a);
         btnSalvar.setEnabled(b);
-        btnSair.setEnabled(c);
+        btnCancelar.setEnabled(c);
         btnExcluir.setEnabled(d);
-        btnCancelar.setEnabled(e);
+        btnSair.setEnabled(e);
     }
     
     private void gravar(){
