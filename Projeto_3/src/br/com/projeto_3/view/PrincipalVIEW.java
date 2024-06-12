@@ -7,6 +7,7 @@ package br.com.projeto_3.view;
 import javax.swing.JOptionPane;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.util.HashSet;
 import javax.swing.ImageIcon;
 /**
  *
@@ -44,11 +45,12 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         itemMenuFornecedor = new javax.swing.JMenuItem();
         itemMenuProduto = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menuCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_3/view/imagens/novo.png"))); // NOI18N
+        menuCadastro.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menuCadastro.setMnemonic('f');
         menuCadastro.setText("Cadastrar");
         menuCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -84,8 +86,16 @@ public class PrincipalVIEW extends javax.swing.JFrame {
 
         menuBar.add(menuCadastro);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_3/view/imagens/novo.png"))); // NOI18N
         jMenu1.setText("Venda");
+
+        jMenuItem1.setText("Realizar Venda");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         menuBar.add(jMenu1);
 
         menuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto_3/view/imagens/sair.png"))); // NOI18N
@@ -108,7 +118,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
         pack();
@@ -133,6 +143,10 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private void itemMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuProdutoActionPerformed
         abreProdutoVIEW();
     }//GEN-LAST:event_itemMenuProdutoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        abreVendaVIEW();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     private void sair(){
         Object [] options = {"Sair", "Cancelar"};
@@ -156,12 +170,19 @@ public class PrincipalVIEW extends javax.swing.JFrame {
         produtoVIEW.setPosicao();
     }
         
-            private void abreFornecedorVIEW(){
+        private void abreFornecedorVIEW(){
         FornecedorVIEW fornecedorVIEW = new FornecedorVIEW();
         this.desktopPane.add(fornecedorVIEW);
         fornecedorVIEW.setVisible(true);
         fornecedorVIEW.setPosicao();
     }
+        private void abreVendaVIEW(){
+            VendaVIEW vendaVIEW = new VendaVIEW();
+            this.desktopPane.add(vendaVIEW);
+            vendaVIEW.setVisible(true);
+            vendaVIEW.setPosicao();      
+        }
+        
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -202,6 +223,7 @@ public class PrincipalVIEW extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemMenuFornecedor;
     private javax.swing.JMenuItem itemMenuProduto;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuSair;
